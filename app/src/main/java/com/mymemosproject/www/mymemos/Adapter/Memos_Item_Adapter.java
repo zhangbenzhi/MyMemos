@@ -19,11 +19,6 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-/*
- *@package:com.mymemosproject.www.mymemos.Adapter
- *@description:
- *@author: create by Cqh_i on 2018/12/8 14:32
- */
 public class Memos_Item_Adapter extends ArrayAdapter<List_Memos_Content>{
     private int resourceId;
     private int flag = 0;
@@ -47,7 +42,7 @@ public class Memos_Item_Adapter extends ArrayAdapter<List_Memos_Content>{
     public int getCount() {
         if(data.size() == 0)return 0;
         if(flag == 1)return data.size();
-        return data.size()+500;
+        return data.size();
     }
 
     @NonNull

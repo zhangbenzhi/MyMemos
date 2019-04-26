@@ -1,10 +1,5 @@
 package com.mymemosproject.www.mymemos.Utils;
 
-/*
- *@package:com.mymemosproject.www.mymemos.Utils
- *@description:
- *@author: create by Cqh_i on 2018/12/8 14:03
- */
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -12,10 +7,6 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
-/**
- * 模仿滚轮动画缩放的ListView
- * Created by xu on 2017/3/3.
- */
 public class XuListView extends ListView implements AbsListView.OnScrollListener {
     private static final String TAG = "XuListView";
 
@@ -27,7 +18,7 @@ public class XuListView extends ListView implements AbsListView.OnScrollListener
     public XuListView(Context context, AttributeSet attrs) {
         super(context, attrs);
         //设置一个滚动监听
-        setOnScrollListener(this);
+        //setOnScrollListener(this);
     }
 
     @Override

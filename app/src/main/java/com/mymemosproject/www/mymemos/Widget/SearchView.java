@@ -31,9 +31,6 @@ import scut.carson_ho.searchview.RecordSQLiteOpenHelper;
 import scut.carson_ho.searchview.SearchListView;
 import scut.carson_ho.searchview.bCallBack;
 
-/**
- * Created by Carson_Ho on 17/8/10.
- */
 
 public class SearchView extends LinearLayout {
 

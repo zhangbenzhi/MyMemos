@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyMemos</string>
+    <string name="app_name">日程管理</string>
     <string name="banquan">Copyright © 2018 Cqh_i. All rights reserved. </string>
     <string name="nav_hint">记录您身边重要的事！</string>
     <string name="title_hint">标题</string>

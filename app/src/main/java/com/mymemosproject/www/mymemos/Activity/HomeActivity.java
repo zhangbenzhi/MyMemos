@@ -2,6 +2,7 @@ package com.mymemosproject.www.mymemos.Activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -10,10 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,10 +22,6 @@ import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
-import com.codbking.widget.DatePickDialog;
-import com.codbking.widget.OnChangeLisener;
-import com.codbking.widget.OnSureLisener;
-import com.codbking.widget.bean.DateType;
 import com.mymemosproject.www.mymemos.Fragment.AllmemosFragment;
 import com.mymemosproject.www.mymemos.Fragment.SomedayFragment;
 import com.mymemosproject.www.mymemos.Fragment.TodayFragment;
@@ -35,8 +29,6 @@ import com.mymemosproject.www.mymemos.R;
 import com.mymemosproject.www.mymemos.Utils.ActivityCollector;
 
 import java.lang.reflect.Field;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -69,20 +61,12 @@ public class HomeActivity extends BaseActivity implements BottomNavigationBar.On
         NavigationView navView = findViewById(R.id.nav_view);
         View headview = navView.inflateHeaderView(R.layout.nav_header);
         CircleImageView civ = headview.findViewById(R.id.icon_image);
-        civ.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, AboutActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            }
-        });
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_all:
-                        title_top.setText("MyMemos");
+                        title_top.setText("日程管理");
                         break;
                     case R.id.nav_work:
                         title_top.setText("MyMemos: 工作");
@@ -92,11 +76,6 @@ public class HomeActivity extends BaseActivity implements BottomNavigationBar.On
                         break;
                     case R.id.nav_study:
                         title_top.setText("MyMemos: 学习");
-                        break;
-                    case R.id.about_mymemos:
-                        Intent intent = new Intent(HomeActivity.this, AboutActivity.class);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         break;
                     case R.id.exit_mymemos:
                         ActivityCollector.finishAll();
