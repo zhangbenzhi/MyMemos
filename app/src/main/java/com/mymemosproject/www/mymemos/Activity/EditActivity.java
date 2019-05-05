@@ -19,6 +19,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.codbking.widget.DatePickDialog;
+import com.codbking.widget.OnChangeLisener;
+import com.codbking.widget.OnSureLisener;
+import com.codbking.widget.bean.DateType;
 import com.github.mr5.icarus.Callback;
 import com.github.mr5.icarus.Icarus;
 import com.github.mr5.icarus.TextViewToolbar;
@@ -89,6 +93,37 @@ public class EditActivity extends BaseActivity implements CompoundButton.OnCheck
             else icarus.setContent(html_cont.substring(12, html_cont.length() - 2));
         }
         icarus.render();
+
+        date_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final DatePickDialog dialog = new DatePickDialog(EditActivity.this);
+                //设置上下年分限制
+                dialog.setYearLimt(5);
+                //设置标题
+                dialog.setTitle("选择时间");
+                //设置类型
+                dialog.setType(DateType.TYPE_YMD);
+                //设置消息体的显示格式，日期格式
+                dialog.setMessageFormat("yyyy-MM-dd");
+                //设置选择回调
+                dialog.setOnChangeLisener(new OnChangeLisener() {
+                    @Override
+                    public void onChanged(Date date) {
+
+                    }
+                });
+                //设置点击确定按钮回调
+                dialog.setOnSureLisener(new OnSureLisener() {
+                    public void onSure(Date date) {
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        String time = sdf.format(date);
+                        date_text.setText(time);
+                    }
+                });
+                dialog.show();
+            }
+        });
     }
 
     private Toolbar prepareToolbar(TextViewToolbar toolbar, Icarus icarus) {
@@ -191,7 +226,7 @@ public class EditActivity extends BaseActivity implements CompoundButton.OnCheck
         if(memos_from_click != null){
             title_text.setText(memos_from_click.getTitle());
             Date date_text1 = memos_from_click.getCreate_date();
-            SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");
             String dateString1 = formatter1.format(date_text1);
             date_text.setText(dateString1);
             if(memos_from_click.getState() == 0){
@@ -211,10 +246,13 @@ public class EditActivity extends BaseActivity implements CompoundButton.OnCheck
             //初始化日期
             date = new Date();
             long times = date.getTime();//时间戳
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             String dateString = formatter.format(date);
             date_text.setText(dateString);
         }
+
+
+
     }
 
 
@@ -243,7 +281,7 @@ public class EditActivity extends BaseActivity implements CompoundButton.OnCheck
                 return true;
             }
             title = title_text.getText().toString().trim();
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             date2 = null;
             try {
                 date2 = formatter.parse(date_text.getText().toString().trim());
